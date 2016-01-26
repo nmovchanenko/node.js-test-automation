@@ -51,15 +51,11 @@ exports.config = {
     },
 
     params: {
-        firm: {
+        admin: {
             email: '',
             pass: ''
         },
-        brand: {
-            email: '',
-            pass: ''
-        },
-        specifier: {
+        user: {
             email: '',
             pass: ''
         }
