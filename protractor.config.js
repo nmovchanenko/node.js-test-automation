@@ -2,25 +2,42 @@ const config = require('./config');
 
 exports.config = {
 
-    // base path, that will be used to resolve files and exclude
-    basepath: '../',
+    baseUrl: config.get('env:angularjs'),
 
-    baseUrl: config.get('env:local'),
+    sauceUser: config.get('sauce:name'),
 
-    // location of the tests to be run
+    sauceKey: config.get('sauce:key'),
+
     specs: [
         'test/ui/*.js'
     ],
 
     capabilities: {
-        'browserName': 'chrome',
-        'chromeOptions': {
-            'args': [
-                'incognito',
-                'disable-extensions', 'start-maximized', 'enable-crash-reporter-for-testing'
-            ]
-        }
+        'browserName': "chrome",
+        "platform": "OS X 10.9",
+        "name": "run test on OS X",
+        "build": "build-19902",
+        "tags": ["tag1","tag2","tag3"],
+        "passed": "true",
+        "recordVideo": false
     },
+
+    /*multiCapabilities: [{
+        'browserName': "chrome",
+        "platform": "OS X 10.9",
+        "name": "run test on OS X",
+        "build": "build-19902",
+        "tags": ["tag1","tag2","tag3"],
+        "passed": "true",
+        "recordVideo": false
+    }, {
+        'browserName': 'safari',
+        "build": "build-19902",
+        "passed": "true",
+        'platform': 'OS X 10.10',
+        "recordVideo": false,
+        'name': 'Mac Safari'
+    }],*/
 
     allScriptsTimeout: 100000,
 

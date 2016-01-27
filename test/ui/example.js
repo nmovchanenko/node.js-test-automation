@@ -1,12 +1,30 @@
 
 describe('Phone catalog', function() {
+    const name = 'World';
 
     beforeEach(function() {
-        browser.get("/app/#/phones");
+        browser.get("/");
     });
 
-    it('should open detail page', function() {
-        element(by.xpath("//a[@class='ng-binding']")).click();
-        expect(element(by.xpath("//h1[@class='ng-binding ng-scope']")).getText()).toEqual("Motorola XOOM™ with Wi-Fi")
+    it('should pass', function() {
+        element(by.model('yourName')).sendKeys(name)
+            .then( () => {
+            element(by.xpath('//h1[@class="ng-binding"]')).getText()
+            .then( text => {
+                console.log(text);
+                expect(text).toEqual('Hello ' + name + '!');
+            });
+        });
+    });
+
+    it('should fail', function() {
+        element(by.model('yourName')).sendKeys(name)
+            .then( () => {
+                element(by.xpath('//h1[@class="ng-binding"]')).getText()
+                    .then( text => {
+                        console.log(text);
+                        expect(text).toEqual('Hello Nikolay!');
+                    });
+            });
     })
 });
