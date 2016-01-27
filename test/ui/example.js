@@ -1,3 +1,5 @@
+const commons = require('../../lib/commons')();
+
 
 describe('Phone catalog', function() {
     const name = 'World';
@@ -7,14 +9,20 @@ describe('Phone catalog', function() {
     });
 
     it('should pass', function() {
-        element(by.model('yourName')).sendKeys(name)
+
+        const nameInput = element(by.model('yourName'));
+        nameInput.click();
+        nameInput.clear();
+
+        nameInput.sendKeys(name)
             .then( () => {
             element(by.xpath('//h1[@class="ng-binding"]')).getText()
             .then( text => {
-                console.log(text);
                 expect(text).toEqual('Hello ' + name + '!');
             });
         });
+
+
     });
 
     it('should fail', function() {
@@ -22,9 +30,12 @@ describe('Phone catalog', function() {
             .then( () => {
                 element(by.xpath('//h1[@class="ng-binding"]')).getText()
                     .then( text => {
-                        console.log(text);
                         expect(text).toEqual('Hello Nikolay!');
                     });
             });
+    });
+
+    it('should be no action logs', function() {
+        expect(true).toBe(true);
     })
 });
